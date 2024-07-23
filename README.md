@@ -1,7 +1,8 @@
 # 😃 ↔ `:shortname:`
 
 ### TODO
-- [ ] Reverse emoji and shortname paths
+- [x] Reverse emoji and shortname paths
 - [ ] Landing page
-- [ ] Add variations of emojis to response
-- [ ] Alternate shortnames
+    - [ ] can you have index.json AND index.html paths? to render in-browser or?
+- [x] Add variations of emojis to response
+- [x] Alternate shortnames
