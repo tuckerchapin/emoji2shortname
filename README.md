@@ -1,4 +1,4 @@
-# emoji2shortname
+# 😃 → `:shortname:`
 
 ### TODO
 - [ ] Reverse emoji and shortname paths
