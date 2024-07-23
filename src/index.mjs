@@ -41,14 +41,14 @@ await fs.mkdir(SHORTNAME_DIR_PATH, { recursive: true });
 
 const fileWrites = allEmojis.reduce((acc, emoji) => {
   // make emoji -> shortname endpoints
-  const emojiPath = path.join(EMOJI_DIR_PATH, emoji.emoji)
+  const emojiPath = path.join(SHORTNAME_DIR_PATH, emoji.emoji)
   acc.push(
     fs.mkdir(emojiPath, { recursive: true })
     .then(() => fs.writeFile(path.join(emojiPath, 'index.json'), JSON.stringify(emoji)))
   );
 
   // make shortname -> emoji endpoints
-  const shortnamePath = path.join(SHORTNAME_DIR_PATH, emoji.shortname)
+  const shortnamePath = path.join(EMOJI_DIR_PATH, emoji.shortname)
   acc.push(
     fs.mkdir(shortnamePath, { recursive: true })
     .then(() => fs.writeFile(path.join(shortnamePath, 'index.json'), JSON.stringify(emoji)))
