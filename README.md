@@ -2,7 +2,8 @@
 
 ### TODO
 - [x] Reverse emoji and shortname paths
-- [ ] Landing page
-    - [ ] can you have index.json AND index.html paths? to render in-browser or?
+- [x] Landing page
+    - [x] can you have index.json AND index.html paths? to render in-browser on? (no you can't)
 - [x] Add variations of emojis to response
 - [x] Alternate shortnames
+- [ ] fix mobile site
