@@ -183,6 +183,20 @@
         height: 48px;
         fill: var(--bgColor-neutral-muted);
       }
+
+      @media screen and (orientation: portrait),
+      screen and (max-width: 480px) {
+        h1 {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
+        h1 > span.arrow {
+          rotate: 90deg;
+          margin-bottom: 6px;
+        }
+      }
     </style>
 
     <script async>
@@ -191,7 +205,7 @@
 
       const fetchEmojis = () => fetch(`${baseUrl}/emojis.json`)
         .then(res => res.json())
-        .then(arr => arr.filter(({ shortname }) => !shortname.includes('::')))
+        .then(arr => arr.filter(({ shortname }) => !shortname.includes('::') && shortname.length < 24))
         .then(arr => { emojis = arr; })
         ;
 
@@ -237,7 +251,7 @@
     </script>
   </head>
   <body>
-    <h1><span class="emoji">&#x1F603;</span><span> &harr; </span><code><span class="shortname">:shortname:</span></code></h1>
+    <h1><span class="emoji">&#x1F603;</span><span class="arrow"> &harr; </span><code><span class="shortname">:shortname:</span></code></h1>
     <pre><span class="pl-c">&gt;</span> <span class="pl-en">GET</span> <a class="emoji pl-s" href="https://tuckerchap.in/emoji-codec/&#x1F603;">https://tuckerchap.in/emoji-codec/<span class="emoji">&#x1F603;</span></a>
 <span class="pl-c">&gt;</span> <span class="pl-en">GET</span> <a class="shortname pl-s" href="https://tuckerchap.in/emoji-codec/:smiley:">https://tuckerchap.in/emoji-codec/<span class="shortname">:smiley:</span></a>
 {
