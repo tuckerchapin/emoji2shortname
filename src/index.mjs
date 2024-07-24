@@ -40,13 +40,13 @@ await fs.writeFile(path.join(OUTPUT_DIR, 'emojis.json'), JSON.stringify(allEmoji
 
 await Promise.all(allEmojis.reduce((acc, emoji) => {
   // make emoji -> shortname endpoints
-  acc.push(fs.writeFile(path.join(OUTPUT_DIR, emoji.emoji), JSON.stringify(emoji)));
+  acc.push(fs.writeFile(path.join(OUTPUT_DIR, emoji.emoji + '.json'), JSON.stringify(emoji)));
 
   // make shortname -> emoji endpoints
-  acc.push(fs.writeFile(path.join(OUTPUT_DIR, emoji.shortname), JSON.stringify(emoji)));
+  acc.push(fs.writeFile(path.join(OUTPUT_DIR, emoji.shortname + '.json'), JSON.stringify(emoji)));
 
   // make alternative shortnames -> emoji endpoints as well
-  acc.push(...emoji.shortnames.map(shortname => fs.writeFile(path.join(OUTPUT_DIR, shortname), JSON.stringify(emoji))))
+  acc.push(...emoji.shortnames.map(shortname => fs.writeFile(path.join(OUTPUT_DIR, shortname + '.json'), JSON.stringify(emoji))))
 
   return acc;
 }, []));
