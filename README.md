@@ -7,5 +7,5 @@
 - [x] Add variations of emojis to response
 - [x] Alternate shortnames
 - [ ] fix mobile site
-- [ ] fix randomized variant syntax highlghting
+- [x] fix randomized variant syntax highlghting
 - [ ] add link to github repo
