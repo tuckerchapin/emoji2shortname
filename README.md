@@ -9,5 +9,5 @@
 - [x] fix mobile site
 - [x] fix randomized variant syntax highlghting
 - [x] add link to github repo
-- [ ] fix whatever is up with the fixed height on the code snippet
+- [x] fix whatever is up with the fixed height on the code snippet
 - [ ] add html entity codes?
