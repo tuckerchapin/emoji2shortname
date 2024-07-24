@@ -8,3 +8,4 @@
 - [x] Alternate shortnames
 - [ ] fix mobile site
 - [ ] fix randomized variant syntax highlghting
+- [ ] add link to github repo

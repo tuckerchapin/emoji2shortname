@@ -101,9 +101,11 @@
         justify-content: center;
         align-items: center;
         row-gap: 32px;
+        font-size: 16px;
       }
 
       h1 {
+        line-height: 1em;
         margin: 0;
         white-space: nowrap;
       }
@@ -124,11 +126,11 @@
         padding: 16px;
         word-wrap: normal;
         word-break: normal;
+        background-color: var(--bgColor-muted);
         font-size: 85%;
         line-height: 1.45;
-        background-color: var(--bgColor-muted);
+        height: calc(1em * 1.45 * 8);
         width: 500px;
-        max-height: 152px;
         overflow: scroll;
       }
 
@@ -181,9 +183,24 @@
         document.querySelectorAll('span.shortname').forEach(n => n.innerText = shortname);
         document.querySelectorAll('a.shortname').forEach(n => n.href = `${baseUrl}/${shortname}`);
 
-        document.querySelector('span#shortnames').innerHTML = shortnames.map(s => `<span class="pl-s"><span class="pl-pds">"</span>${s}<span class="pl-pds">"</span></span>`).join('<span class="pl-pds">, </span>');
+        const syntaxHighlightShortnames = arr => arr.map(s => `<span class="pl-s"><span class="pl-pds">"</span>${s}<span class="pl-pds">"</span></span>`).join('<span class="pl-pds">, </span>')
+        document.querySelector('span#shortnames').innerHTML = syntaxHighlightShortnames(shortnames);
 
-        document.querySelector('span#variations').innerHTML = JSON.stringify(variations, null, 2);
+        document.querySelector('span#variations').innerHTML = JSON
+          .stringify(variations.map(v => ({ ...v, shortnames: syntaxHighlightShortnames(v.shortnames) || [] })), null, 2)
+          .split('\n')
+          .map((line, i) => i === 0 ? line : '  ' + line) // indent all but the first line
+          .map(l => {
+            // highlight json
+            if (l.includes(':')) {
+              // highlight the lines containing key/value pairs
+              return l.split(/:(.*)/s).map((s, i) => `<span class="pl-${i === 0 ? 'ent' : 's'}">${s}</span>`).slice(0, 2).join(':')
+            }
+            // highlight the braces and brackets
+            return `<span class="pl-pds">${l}</span>`;
+          })
+          .join('\n')
+          ;
       }
 
       const randomEmoji = () => {
