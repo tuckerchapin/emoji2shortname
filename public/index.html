@@ -1,44 +1,57 @@
 <html>
   <head>
     <title>&#x1F603; &harr; :shortname:</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
 
-    <!-- gh markdown styles trimmed from https://github.com/sindresorhus/github-markdown-css/blob/main/github-markdown.css -->
     <style>
-      .markdown-body {
-        --base-size-4: 0.25rem;
-        --base-size-8: 0.5rem;
-        --base-size-16: 1rem;
-        --base-text-weight-normal: 400;
-        --base-text-weight-medium: 500;
+      :root {
         --base-text-weight-semibold: 600;
         --fontStack-monospace: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+
+        color-scheme: light;
+        --fgColor-default: #1f2328;
+        --bgColor-default: #ffffff;
+        --bgColor-muted: #f6f8fa;
+        --bgColor-neutral-muted: #afb8c133;
+        --color-prettylights-syntax-comment: #57606a;
+        --color-prettylights-syntax-constant: #0550ae;
+        --color-prettylights-syntax-constant-other-reference-link: #0a3069;
+        --color-prettylights-syntax-entity: #6639ba;
+        --color-prettylights-syntax-storage-modifier-import: #24292f;
+        --color-prettylights-syntax-entity-tag: #0550ae;
+        --color-prettylights-syntax-keyword: #cf222e;
+        --color-prettylights-syntax-string: #0a3069;
+        --color-prettylights-syntax-variable: #953800;
+        --color-prettylights-syntax-brackethighlighter-unmatched: #82071e;
+        --color-prettylights-syntax-brackethighlighter-angle: #57606a;
+        --color-prettylights-syntax-invalid-illegal-text: #f6f8fa;
+        --color-prettylights-syntax-invalid-illegal-bg: #82071e;
+        --color-prettylights-syntax-carriage-return-text: #f6f8fa;
+        --color-prettylights-syntax-carriage-return-bg: #cf222e;
+        --color-prettylights-syntax-string-regexp: #116329;
+        --color-prettylights-syntax-markup-list: #3b2300;
+        --color-prettylights-syntax-markup-heading: #0550ae;
+        --color-prettylights-syntax-markup-italic: #24292f;
+        --color-prettylights-syntax-markup-bold: #24292f;
+        --color-prettylights-syntax-markup-deleted-text: #82071e;
+        --color-prettylights-syntax-markup-deleted-bg: #ffebe9;
+        --color-prettylights-syntax-markup-inserted-text: #116329;
+        --color-prettylights-syntax-markup-inserted-bg: #dafbe1;
+        --color-prettylights-syntax-markup-changed-text: #953800;
+        --color-prettylights-syntax-markup-changed-bg: #ffd8b5;
+        --color-prettylights-syntax-markup-ignored-text: #eaeef2;
+        --color-prettylights-syntax-markup-ignored-bg: #0550ae;
+        --color-prettylights-syntax-meta-diff-range: #8250df;
+        --color-prettylights-syntax-sublimelinter-gutter-mark: #8c959f;
       }
 
       @media (prefers-color-scheme: dark) {
-        .markdown-body,
-        [data-theme="dark"] {
-          /*dark*/
+        :root {
           color-scheme: dark;
-          --focus-outlineColor: #1f6feb;
           --fgColor-default: #e6edf3;
-          --fgColor-muted: #8d96a0;
-          --fgColor-accent: #4493f8;
-          --fgColor-success: #3fb950;
-          --fgColor-attention: #d29922;
-          --fgColor-danger: #f85149;
-          --fgColor-done: #ab7df8;
           --bgColor-default: #0d1117;
           --bgColor-muted: #161b22;
           --bgColor-neutral-muted: #6e768166;
-          --bgColor-attention-muted: #bb800926;
-          --borderColor-default: #30363d;
-          --borderColor-muted: #30363db3;
-          --borderColor-neutral-muted: #6e768166;
-          --borderColor-accent-emphasis: #1f6feb;
-          --borderColor-success-emphasis: #238636;
-          --borderColor-attention-emphasis: #9e6a03;
-          --borderColor-danger-emphasis: #da3633;
-          --borderColor-done-emphasis: #8957e5;
           --color-prettylights-syntax-comment: #8b949e;
           --color-prettylights-syntax-constant: #79c0ff;
           --color-prettylights-syntax-constant-other-reference-link: #a5d6ff;
@@ -72,472 +85,12 @@
         }
       }
 
-      @media (prefers-color-scheme: light) {
-        .markdown-body,
-        [data-theme="light"] {
-          /*light*/
-          color-scheme: light;
-          --focus-outlineColor: #0969da;
-          --fgColor-default: #1f2328;
-          --fgColor-muted: #636c76;
-          --fgColor-accent: #0969da;
-          --fgColor-success: #1a7f37;
-          --fgColor-attention: #9a6700;
-          --fgColor-danger: #d1242f;
-          --fgColor-done: #8250df;
-          --bgColor-default: #ffffff;
-          --bgColor-muted: #f6f8fa;
-          --bgColor-neutral-muted: #afb8c133;
-          --bgColor-attention-muted: #fff8c5;
-          --borderColor-default: #d0d7de;
-          --borderColor-muted: #d0d7deb3;
-          --borderColor-neutral-muted: #afb8c133;
-          --borderColor-accent-emphasis: #0969da;
-          --borderColor-success-emphasis: #1a7f37;
-          --borderColor-attention-emphasis: #bf8700;
-          --borderColor-danger-emphasis: #cf222e;
-          --borderColor-done-emphasis: #8250df;
-          --color-prettylights-syntax-comment: #57606a;
-          --color-prettylights-syntax-constant: #0550ae;
-          --color-prettylights-syntax-constant-other-reference-link: #0a3069;
-          --color-prettylights-syntax-entity: #6639ba;
-          --color-prettylights-syntax-storage-modifier-import: #24292f;
-          --color-prettylights-syntax-entity-tag: #0550ae;
-          --color-prettylights-syntax-keyword: #cf222e;
-          --color-prettylights-syntax-string: #0a3069;
-          --color-prettylights-syntax-variable: #953800;
-          --color-prettylights-syntax-brackethighlighter-unmatched: #82071e;
-          --color-prettylights-syntax-brackethighlighter-angle: #57606a;
-          --color-prettylights-syntax-invalid-illegal-text: #f6f8fa;
-          --color-prettylights-syntax-invalid-illegal-bg: #82071e;
-          --color-prettylights-syntax-carriage-return-text: #f6f8fa;
-          --color-prettylights-syntax-carriage-return-bg: #cf222e;
-          --color-prettylights-syntax-string-regexp: #116329;
-          --color-prettylights-syntax-markup-list: #3b2300;
-          --color-prettylights-syntax-markup-heading: #0550ae;
-          --color-prettylights-syntax-markup-italic: #24292f;
-          --color-prettylights-syntax-markup-bold: #24292f;
-          --color-prettylights-syntax-markup-deleted-text: #82071e;
-          --color-prettylights-syntax-markup-deleted-bg: #ffebe9;
-          --color-prettylights-syntax-markup-inserted-text: #116329;
-          --color-prettylights-syntax-markup-inserted-bg: #dafbe1;
-          --color-prettylights-syntax-markup-changed-text: #953800;
-          --color-prettylights-syntax-markup-changed-bg: #ffd8b5;
-          --color-prettylights-syntax-markup-ignored-text: #eaeef2;
-          --color-prettylights-syntax-markup-ignored-bg: #0550ae;
-          --color-prettylights-syntax-meta-diff-range: #8250df;
-          --color-prettylights-syntax-sublimelinter-gutter-mark: #8c959f;
-        }
-      }
-
-      .markdown-body {
-        -ms-text-size-adjust: 100%;
-        -webkit-text-size-adjust: 100%;
-        margin: 0;
+      html {
         color: var(--fgColor-default);
         background-color: var(--bgColor-default);
-        font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
-        font-size: 16px;
-        line-height: 1.5;
-        word-wrap: break-word;
-        scroll-behavior: auto;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
       }
 
-      .markdown-body h1:hover .anchor .octicon-link:before {
-        width: 16px;
-        height: 16px;
-        content: ' ';
-        display: inline-block;
-        background-color: currentColor;
-        -webkit-mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' version='1.1' aria-hidden='true'><path fill-rule='evenodd' d='M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z'></path></svg>");
-        mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' version='1.1' aria-hidden='true'><path fill-rule='evenodd' d='M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z'></path></svg>");
-      }
-
-      .markdown-body [hidden] {
-        display: none !important;
-      }
-
-      .markdown-body a {
-        background-color: transparent;
-        color: var(--fgColor-accent);
-        text-decoration: none;
-      }
-
-      .markdown-body h1 {
-        margin: .67em 0;
-        font-weight: var(--base-text-weight-semibold, 600);
-        padding-bottom: .3em;
-        font-size: 2em;
-        border-bottom: 1px solid var(--borderColor-muted);
-      }
-
-      .markdown-body mark {
-        background-color: var(--bgColor-attention-muted);
-        color: var(--fgColor-default);
-      }
-
-      .markdown-body small {
-        font-size: 90%;
-      }
-
-      .markdown-body sub,
-      .markdown-body sup {
-        font-size: 75%;
-        line-height: 0;
-        position: relative;
-        vertical-align: baseline;
-      }
-
-      .markdown-body sub {
-        bottom: -0.25em;
-      }
-
-      .markdown-body sup {
-        top: -0.5em;
-      }
-
-      .markdown-body code,
-      .markdown-body kbd,
-      .markdown-body pre,
-      .markdown-body samp {
-        font-family: monospace;
-        font-size: 1em;
-      }
-
-      .markdown-body hr {
-        box-sizing: content-box;
-        overflow: hidden;
-        background: transparent;
-        border-bottom: 1px solid var(--borderColor-muted);
-        height: .25em;
-        padding: 0;
-        margin: 24px 0;
-        background-color: var(--borderColor-default);
-        border: 0;
-      }
-
-      .markdown-body a:hover {
-        text-decoration: underline;
-      }
-
-      .markdown-body ::placeholder {
-        color: var(--fgColor-muted);
-        opacity: 1;
-      }
-
-      .markdown-body hr::before {
-        display: table;
-        content: "";
-      }
-
-      .markdown-body hr::after {
-        display: table;
-        clear: both;
-        content: "";
-      }
-
-      .markdown-body a:focus {
-        outline: 2px solid var(--focus-outlineColor);
-        outline-offset: -2px;
-        box-shadow: none;
-      }
-
-      .markdown-body a:focus:not(:focus-visible) {
-        outline: solid 1px transparent;
-      }
-
-      .markdown-body a:focus-visible {
-        outline: 2px solid var(--focus-outlineColor);
-        outline-offset: -2px;
-        box-shadow: none;
-      }
-
-      .markdown-body a:not([class]):focus {
-        outline-offset: 0;
-      }
-
-      .markdown-body kbd {
-        display: inline-block;
-        padding: 3px 5px;
-        font: 11px var(--fontStack-monospace, ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace);
-        line-height: 10px;
-        color: var(--fgColor-default);
-        vertical-align: middle;
-        background-color: var(--bgColor-muted);
-        border: solid 1px var(--borderColor-neutral-muted);
-        border-bottom-color: var(--borderColor-neutral-muted);
-        border-radius: 6px;
-        box-shadow: inset 0 -1px 0 var(--borderColor-neutral-muted);
-      }
-
-      .markdown-body h1 {
-        margin-top: 24px;
-        margin-bottom: 16px;
-        font-weight: var(--base-text-weight-semibold, 600);
-        line-height: 1.25;
-      }
-
-      .markdown-body blockquote {
-        margin: 0;
-        padding: 0 1em;
-        color: var(--fgColor-muted);
-        border-left: .25em solid var(--borderColor-default);
-      }
-
-      .markdown-body tt,
-      .markdown-body code,
-      .markdown-body samp {
-        font-family: var(--fontStack-monospace, ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace);
-        font-size: 12px;
-      }
-
-      .markdown-body pre {
-        margin-top: 0;
-        margin-bottom: 0;
-        font-family: var(--fontStack-monospace, ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace);
-        font-size: 12px;
-        word-wrap: normal;
-      }
-
-      .markdown-body::before {
-        display: table;
-        content: "";
-      }
-
-      .markdown-body::after {
-        display: table;
-        clear: both;
-        content: "";
-      }
-
-      .markdown-body>*:first-child {
-        margin-top: 0 !important;
-      }
-
-      .markdown-body>*:last-child {
-        margin-bottom: 0 !important;
-      }
-
-      .markdown-body a:not([href]) {
-        color: inherit;
-        text-decoration: none;
-      }
-
-      .markdown-body p,
-      .markdown-body blockquote,
-      .markdown-body table,
-      .markdown-body pre,
-      .markdown-body details {
-        margin-top: 0;
-        margin-bottom: 16px;
-      }
-
-      .markdown-body blockquote>:first-child {
-        margin-top: 0;
-      }
-
-      .markdown-body blockquote>:last-child {
-        margin-bottom: 0;
-      }
-
-      .markdown-body h1 tt,
-      .markdown-body h1 code {
-        padding: 0 .2em;
-        font-size: inherit;
-      }
-
-
-      .markdown-body code,
-      .markdown-body tt {
-        padding: .2em .4em;
-        margin: 0;
-        font-size: 85%;
-        white-space: break-spaces;
-        background-color: var(--bgColor-neutral-muted);
-        border-radius: 6px;
-      }
-
-      .markdown-body code br,
-      .markdown-body tt br {
-        display: none;
-      }
-
-      .markdown-body del code {
-        text-decoration: inherit;
-      }
-
-      .markdown-body samp {
-        font-size: 85%;
-      }
-
-      .markdown-body pre code {
-        font-size: 100%;
-      }
-
-      .markdown-body pre>code {
-        padding: 0;
-        margin: 0;
-        word-break: normal;
-        white-space: pre;
-        background: transparent;
-        border: 0;
-      }
-
-      .markdown-body .highlight {
-        margin-bottom: 16px;
-      }
-
-      .markdown-body .highlight pre {
-        margin-bottom: 0;
-        word-break: normal;
-      }
-
-      .markdown-body .highlight pre,
-      .markdown-body pre {
-        padding: 16px;
-        overflow: auto;
-        font-size: 85%;
-        line-height: 1.45;
-        color: var(--fgColor-default);
-        background-color: var(--bgColor-muted);
-        border-radius: 6px;
-      }
-
-      .markdown-body pre code,
-      .markdown-body pre tt {
-        display: inline;
-        max-width: auto;
-        padding: 0;
-        margin: 0;
-        overflow: visible;
-        line-height: inherit;
-        word-wrap: normal;
-        background-color: transparent;
-        border: 0;
-      }
-
-      .markdown-body .pl-c {
-        color: var(--color-prettylights-syntax-comment);
-      }
-
-      .markdown-body .pl-c1,
-      .markdown-body .pl-s .pl-v {
-        color: var(--color-prettylights-syntax-constant);
-      }
-
-      .markdown-body .pl-e,
-      .markdown-body .pl-en {
-        color: var(--color-prettylights-syntax-entity);
-      }
-
-      .markdown-body .pl-smi,
-      .markdown-body .pl-s .pl-s1 {
-        color: var(--color-prettylights-syntax-storage-modifier-import);
-      }
-
-      .markdown-body .pl-ent {
-        color: var(--color-prettylights-syntax-entity-tag);
-      }
-
-      .markdown-body .pl-k {
-        color: var(--color-prettylights-syntax-keyword);
-      }
-
-      .markdown-body .pl-s,
-      .markdown-body .pl-pds,
-      .markdown-body .pl-s .pl-pse .pl-s1,
-      .markdown-body .pl-sr,
-      .markdown-body .pl-sr .pl-cce,
-      .markdown-body .pl-sr .pl-sre,
-      .markdown-body .pl-sr .pl-sra {
-        color: var(--color-prettylights-syntax-string);
-      }
-
-      .markdown-body .pl-v,
-      .markdown-body .pl-smw {
-        color: var(--color-prettylights-syntax-variable);
-      }
-
-      .markdown-body .pl-bu {
-        color: var(--color-prettylights-syntax-brackethighlighter-unmatched);
-      }
-
-      .markdown-body .pl-ii {
-        color: var(--color-prettylights-syntax-invalid-illegal-text);
-        background-color: var(--color-prettylights-syntax-invalid-illegal-bg);
-      }
-
-      .markdown-body .pl-c2 {
-        color: var(--color-prettylights-syntax-carriage-return-text);
-        background-color: var(--color-prettylights-syntax-carriage-return-bg);
-      }
-
-      .markdown-body .pl-sr .pl-cce {
-        font-weight: bold;
-        color: var(--color-prettylights-syntax-string-regexp);
-      }
-
-      .markdown-body .pl-ml {
-        color: var(--color-prettylights-syntax-markup-list);
-      }
-
-      .markdown-body .pl-mh,
-      .markdown-body .pl-mh .pl-en,
-      .markdown-body .pl-ms {
-        font-weight: bold;
-        color: var(--color-prettylights-syntax-markup-heading);
-      }
-
-      .markdown-body .pl-mi {
-        font-style: italic;
-        color: var(--color-prettylights-syntax-markup-italic);
-      }
-
-      .markdown-body .pl-mb {
-        font-weight: bold;
-        color: var(--color-prettylights-syntax-markup-bold);
-      }
-
-      .markdown-body .pl-md {
-        color: var(--color-prettylights-syntax-markup-deleted-text);
-        background-color: var(--color-prettylights-syntax-markup-deleted-bg);
-      }
-
-      .markdown-body .pl-mi1 {
-        color: var(--color-prettylights-syntax-markup-inserted-text);
-        background-color: var(--color-prettylights-syntax-markup-inserted-bg);
-      }
-
-      .markdown-body .pl-mc {
-        color: var(--color-prettylights-syntax-markup-changed-text);
-        background-color: var(--color-prettylights-syntax-markup-changed-bg);
-      }
-
-      .markdown-body .pl-mi2 {
-        color: var(--color-prettylights-syntax-markup-ignored-text);
-        background-color: var(--color-prettylights-syntax-markup-ignored-bg);
-      }
-
-      .markdown-body .pl-mdr {
-        font-weight: bold;
-        color: var(--color-prettylights-syntax-meta-diff-range);
-      }
-
-      .markdown-body .pl-ba {
-        color: var(--color-prettylights-syntax-brackethighlighter-angle);
-      }
-
-      .markdown-body .pl-sg {
-        color: var(--color-prettylights-syntax-sublimelinter-gutter-mark);
-      }
-
-      .markdown-body .pl-corl {
-        text-decoration: underline;
-        color: var(--color-prettylights-syntax-constant-other-reference-link);
-      }
-    </style>
-
-    <style>
       body {
         margin: 0;
         padding: 0;
@@ -547,22 +100,117 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        row-gap: 32px;
       }
 
-      .markdown-body h1 {
-        border-bottom: none;
+      h1 {
+        margin: 0;
+        white-space: nowrap;
+      }
+
+      code, pre {
+        margin: 0;
+        color: var(--fgColor-default);
+        font-family: var(--fontStack-monospace, ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace);
+        border-radius: 6px;
+      }
+
+      code {
+        padding: 0 .2em;
+        background-color: var(--bgColor-neutral-muted);
+      }
+
+      pre {
+        padding: 16px;
+        word-wrap: normal;
+        word-break: normal;
+        font-size: 85%;
+        line-height: 1.45;
+        background-color: var(--bgColor-muted);
+        width: 500px;
+        max-height: 152px;
+        overflow: scroll;
+      }
+
+      .pl-s {
+        color: var(--color-prettylights-syntax-string);
+      }
+
+      .pl-en {
+        color: var(--color-prettylights-syntax-entity);
+      }
+
+      .pl-c {
+        color: var(--color-prettylights-syntax-comment);
+      }
+
+      .pl-ent {
+        color: var(--color-prettylights-syntax-entity-tag);
+      }
+
+      .pl-c {
+        color: var(--color-prettylights-syntax-comment);
+      }
+
+      #randomize {
+        display: none;
+      }
+
+      label[for="randomize"] {
+        cursor: pointer;
+        font-size: 2em;
+        user-select: none;
+        -webkit-user-select: none;
       }
     </style>
+
+    <script async>
+      const baseUrl = 'https://tuckerchap.in/emoji-codec';
+      let emojis = []
+
+      const fetchEmojis = () => fetch(`${baseUrl}/emojis.json`)
+        .then(res => res.json())
+        .then(arr => arr.filter(({ shortname }) => !shortname.includes('::')))
+        .then(arr => { emojis = arr; })
+        ;
+
+      const assignEmoji = ({ emoji, shortname, shortnames, variations }) => {
+        document.querySelectorAll('span.emoji').forEach(n => n.innerText = emoji);
+        document.querySelectorAll('a.emoji').forEach(n => n.href = `${baseUrl}/${emoji}`);
+
+        document.querySelectorAll('span.shortname').forEach(n => n.innerText = shortname);
+        document.querySelectorAll('a.shortname').forEach(n => n.href = `${baseUrl}/${shortname}`);
+
+        document.querySelector('span#shortnames').innerHTML = shortnames.map(s => `<span class="pl-s"><span class="pl-pds">"</span>${s}<span class="pl-pds">"</span></span>`).join('<span class="pl-pds">, </span>');
+
+        document.querySelector('span#variations').innerHTML = JSON.stringify(variations, null, 2);
+      }
+
+      const randomEmoji = () => {
+        if (emojis.length === 0) {
+          return fetchEmojis()
+            .then(randomEmoji) // TODO backoff retries
+            .catch(console.error)
+            ;
+        }
+
+        assignEmoji(emojis[Math.floor(Math.random() * emojis.length)]);
+      };
+
+      fetchEmojis().catch(console.error);
+    </script>
   </head>
-  <body class="markdown-body">
-    <h1>&#x1F603; &harr; <code>:shortname:</code></h1>
-    <pre><span class="pl-c">&gt;</span> <span class="pl-en">GET</span> <a class="pl-s" href="https://tuckerchap.in/emoji-codec/&#x1F603;">https://tuckerchap.in/emoji-codec/&#x1F603;</a>
-<span class="pl-c">&gt;</span> <span class="pl-en">GET</span> <a class="pl-s" href="https://tuckerchap.in/emoji-codec/:smiley:">https://tuckerchap.in/emoji-codec/:smiley:</a>
+  <body>
+    <h1><span class="emoji">&#x1F603;</span> &harr; <code><span class="shortname">:shortname:</span></code></h1>
+    <pre><span class="pl-c">&gt;</span> <span class="pl-en">GET</span> <a class="emoji pl-s" href="https://tuckerchap.in/emoji-codec/&#x1F603;">https://tuckerchap.in/emoji-codec/<span class="emoji">&#x1F603;</span></a>
+<span class="pl-c">&gt;</span> <span class="pl-en">GET</span> <a class="shortname pl-s" href="https://tuckerchap.in/emoji-codec/:smiley:">https://tuckerchap.in/emoji-codec/<span class="shortname">:smiley:</span></a>
 {
-  <span class="pl-ent">"emoji"</span>: <span class="pl-s"><span class="pl-pds">"</span>&#x1F603;<span class="pl-pds">"</span></span>,
-  <span class="pl-ent">"shortname"</span>: <span class="pl-s"><span class="pl-pds">"</span>:smiley:<span class="pl-pds">"</span></span>,
-  <span class="pl-ent">"shortnames"</span>: [],
-  <span class="pl-ent">"variations"</span>: []
+  <span class="pl-ent">"emoji"</span>: <span class="pl-s"><span class="pl-pds">"</span><span class="emoji">&#x1F603;</span><span class="pl-pds">"</span></span>,
+  <span class="pl-ent">"shortname"</span>: <span class="pl-s"><span class="pl-pds">"</span><span class="shortname">:smiley:</span><span class="pl-pds">"</span></span>,
+  <span class="pl-ent">"shortnames"</span>: [<span id="shortnames"></span>],
+  <span class="pl-ent">"variations"</span>: <span id="variations">[]</span>
 }</pre>
+    <label for="randomize">&#x1F500;</label>
+    <button id="randomize" onclick="randomEmoji()"/>
   </body>
 </html>
