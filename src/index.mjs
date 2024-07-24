@@ -38,61 +38,12 @@ await fs.cp(PUBLIC_DIR, OUTPUT_DIR, { recursive: true });
 
 await fs.writeFile(path.join(OUTPUT_DIR, 'emojis.json'), JSON.stringify(allEmojis));
 
-const teststr = `
-<html>
-  <head>
-    <title>&#x1F603; &harr; :shortname:</title>
-
-    <style>
-      html {
-        font-size: 2em;
-        font-weight: 600;
-        line-height: 1.25;
-        font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
-        color: rgb(230, 237, 243);
-        background-color: rgb(13, 17, 23);
-      }
-
-      body {
-        margin: 0;
-        padding: 0;
-        height: 100vh;
-        width: 100vw;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-
-      code {
-        padding: 0 0.2em;
-        background-color: rgba(110, 118, 129, 0.4);
-        border-radius: 6px;
-        font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
-      }
-
-      #title {
-        user-select: none;
-        -webkit-user-select: none;
-      }
-
-      @media (prefers-color-scheme: dark) {
-      }
-    </style>
-  </head>
-  <body>
-    <div id="title">
-      &#x1F603; &harr; <code>:shortname:</code>
-    </div>
-  </body>
-</html>`;
-
 await Promise.all(allEmojis.reduce((acc, emoji) => {
   // make emoji -> shortname endpoints
   acc.push(fs.writeFile(path.join(OUTPUT_DIR, emoji.emoji), JSON.stringify(emoji)));
 
   // make shortname -> emoji endpoints
   acc.push(fs.writeFile(path.join(OUTPUT_DIR, emoji.shortname), JSON.stringify(emoji)));
-  acc.push(fs.writeFile(path.join(OUTPUT_DIR, emoji.shortname + '.html'), teststr));
 
   // make alternative shortnames -> emoji endpoints as well
   acc.push(...emoji.shortnames.map(shortname => fs.writeFile(path.join(OUTPUT_DIR, shortname), JSON.stringify(emoji))))
