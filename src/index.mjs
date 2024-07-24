@@ -70,4 +70,4 @@ const fileWrites = allEmojis.reduce((acc, emoji) => {
 
 await Promise.all(fileWrites);
 
-await fs.copyFile('README.md', path.join(OUTPUT_DIR, 'index.md');
+await fs.copyFile('README.md', path.join(OUTPUT_DIR, 'index.md'));
