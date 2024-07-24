@@ -32,27 +32,27 @@ const allEmojis = emojis.reduce((acc, emoji) => {
 }, []);
 
 const OUTPUT_DIR = './_site';
-const EMOJI_DIR_NAME = 'emoji';
-const SHORTNAME_DIR_NAME = 'shortname';
-const EMOJI_DIR_PATH = path.join(OUTPUT_DIR, EMOJI_DIR_NAME);
-const SHORTNAME_DIR_PATH = path.join(OUTPUT_DIR, SHORTNAME_DIR_NAME);
+// const EMOJI_DIR_NAME = 'emoji';
+// const SHORTNAME_DIR_NAME = 'shortname';
+// const EMOJI_DIR_PATH = path.join(OUTPUT_DIR, EMOJI_DIR_NAME);
+// const SHORTNAME_DIR_PATH = path.join(OUTPUT_DIR, SHORTNAME_DIR_NAME);
 
-await fs.rm(EMOJI_DIR_PATH, { recursive: true }).catch(() => {});
-await fs.rm(SHORTNAME_DIR_PATH, { recursive: true }).catch(() => {});
+// await fs.rm(EMOJI_DIR_PATH, { recursive: true }).catch(() => {});
+// await fs.rm(SHORTNAME_DIR_PATH, { recursive: true }).catch(() => {});
 
-await fs.mkdir(EMOJI_DIR_PATH, { recursive: true });
-await fs.mkdir(SHORTNAME_DIR_PATH, { recursive: true });
+// await fs.mkdir(EMOJI_DIR_PATH, { recursive: true });
+// await fs.mkdir(SHORTNAME_DIR_PATH, { recursive: true });
 
 const fileWrites = allEmojis.reduce((acc, emoji) => {
   // make emoji -> shortname endpoints
-  const emojiPath = path.join(SHORTNAME_DIR_PATH, emoji.emoji)
+  const emojiPath = path.join(OUTPUT_DIR, emoji.emoji)
   acc.push(
     fs.mkdir(emojiPath, { recursive: true })
     .then(() => fs.writeFile(path.join(emojiPath, 'index.json'), JSON.stringify(emoji)))
   );
 
   // make shortname -> emoji endpoints
-  const shortnamePath = path.join(EMOJI_DIR_PATH, emoji.shortname)
+  const shortnamePath = path.join(OUTPUT_DIR, emoji.shortname)
   acc.push(
     fs.mkdir(shortnamePath, { recursive: true })
     .then(() => fs.writeFile(path.join(shortnamePath, 'index.json'), JSON.stringify(emoji)))
@@ -60,7 +60,7 @@ const fileWrites = allEmojis.reduce((acc, emoji) => {
 
   // make alternative shortnames -> emoji endpoints as well
   acc.push(...emoji.shortnames.map(shortname => {
-    const altShortnamePath = path.join(EMOJI_DIR_PATH, shortname)
+    const altShortnamePath = path.join(OUTPUT_DIR, shortname)
     return fs.mkdir(altShortnamePath, { recursive: true })
     .then(() => fs.writeFile(path.join(altShortnamePath, 'index.json'), JSON.stringify(emoji)))
   }))
