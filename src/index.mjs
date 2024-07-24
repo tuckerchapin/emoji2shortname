@@ -33,20 +33,11 @@ const allEmojis = emojis.reduce((acc, emoji) => {
 
 const OUTPUT_DIR = './_site';
 const PUBLIC_DIR = './public';
-// const EMOJI_DIR_NAME = 'emoji';
-// const SHORTNAME_DIR_NAME = 'shortname';
-// const EMOJI_DIR_PATH = path.join(OUTPUT_DIR, EMOJI_DIR_NAME);
-// const SHORTNAME_DIR_PATH = path.join(OUTPUT_DIR, SHORTNAME_DIR_NAME);
-
-// await fs.rm(EMOJI_DIR_PATH, { recursive: true }).catch(() => {});
-// await fs.rm(SHORTNAME_DIR_PATH, { recursive: true }).catch(() => {});
-
-// await fs.mkdir(EMOJI_DIR_PATH, { recursive: true });
-// await fs.mkdir(SHORTNAME_DIR_PATH, { recursive: true });
 
 await fs.cp(PUBLIC_DIR, OUTPUT_DIR, { recursive: true });
+await fs.writeFile(path.join(OUTPUT_DIR, 'emojis.json'), JSON.stringify(allEmojis));
 
-const fileWrites = allEmojis.reduce((acc, emoji) => {
+await Promise.all(allEmojis.reduce((acc, emoji) => {
   // make emoji -> shortname endpoints
   const emojiPath = path.join(OUTPUT_DIR, emoji.emoji)
   acc.push(
@@ -69,6 +60,4 @@ const fileWrites = allEmojis.reduce((acc, emoji) => {
   }))
 
   return acc;
-}, []);
-
-await Promise.all(fileWrites);
+}, []));
