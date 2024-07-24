@@ -6,6 +6,57 @@
     <title>&#x1F603; &harr; :shortname:</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
 
+    <script async>
+      const baseUrl = 'https://tuckerchap.in/emoji-codec';
+      let emojis = []
+
+      const fetchEmojis = () => fetch(`${baseUrl}/emojis.json`)
+        .then(res => res.json())
+        .then(arr => arr.filter(({ shortname }) => !shortname.includes('::') && shortname.length < 24))
+        .then(arr => { emojis = arr; })
+        ;
+
+      const assignEmoji = ({ emoji, shortname, shortnames, variations }) => {
+        document.querySelectorAll('span.emoji').forEach(n => n.innerText = emoji);
+        document.querySelectorAll('a.emoji').forEach(n => n.href = `${baseUrl}/${emoji}`);
+
+        document.querySelectorAll('span.shortname').forEach(n => n.innerText = shortname);
+        document.querySelectorAll('a.shortname').forEach(n => n.href = `${baseUrl}/${shortname}`);
+
+        const syntaxHighlightShortnames = arr => arr.map(s => `<span class="pl-s"><span class="pl-pds">"</span>${s}<span class="pl-pds">"</span></span>`).join('<span class="pl-pds">, </span>')
+        document.querySelector('span#shortnames').innerHTML = syntaxHighlightShortnames(shortnames);
+
+        document.querySelector('span#variations').innerHTML = JSON
+          .stringify(variations.map(v => ({ ...v, shortnames: syntaxHighlightShortnames(v.shortnames) || [] })), null, 2)
+          .split('\n')
+          .map((line, i) => i === 0 ? line : '  ' + line) // indent all but the first line
+          .map(l => {
+            // highlight json
+            if (l.includes(':')) {
+              // highlight the lines containing key/value pairs
+              return l.split(/:(.*)/s).map((s, i) => `<span class="pl-${i === 0 ? 'ent' : 's'}">${s}</span>`).slice(0, 2).join(':')
+            }
+            // highlight the braces and brackets
+            return `<span class="pl-pds">${l}</span>`;
+          })
+          .join('\n')
+          ;
+      }
+
+      const randomEmoji = () => {
+        if (emojis.length === 0) {
+          return fetchEmojis()
+            .then(randomEmoji) // TODO backoff retries
+            .catch(console.error)
+            ;
+        }
+
+        assignEmoji(emojis[Math.floor(Math.random() * emojis.length)]);
+      };
+
+      fetchEmojis().catch(console.error);
+    </script>
+
     <style>
       :root {
         --base-text-weight-semibold: 600;
@@ -138,7 +189,7 @@
         line-height: 1.45;
         height: calc(1em * 1.45 * 8 + 32px);
         width: 100%;
-        max-width: 500px;
+        max-width: 480px;
         overflow: scroll;
       }
 
@@ -168,7 +219,6 @@
 
       label[for="randomize"] {
         cursor: pointer;
-        font-size: 2em;
         user-select: none;
         -webkit-user-select: none;
       }
@@ -198,57 +248,6 @@
         }
       }
     </style>
-
-    <script async>
-      const baseUrl = 'https://tuckerchap.in/emoji-codec';
-      let emojis = []
-
-      const fetchEmojis = () => fetch(`${baseUrl}/emojis.json`)
-        .then(res => res.json())
-        .then(arr => arr.filter(({ shortname }) => !shortname.includes('::') && shortname.length < 24))
-        .then(arr => { emojis = arr; })
-        ;
-
-      const assignEmoji = ({ emoji, shortname, shortnames, variations }) => {
-        document.querySelectorAll('span.emoji').forEach(n => n.innerText = emoji);
-        document.querySelectorAll('a.emoji').forEach(n => n.href = `${baseUrl}/${emoji}`);
-
-        document.querySelectorAll('span.shortname').forEach(n => n.innerText = shortname);
-        document.querySelectorAll('a.shortname').forEach(n => n.href = `${baseUrl}/${shortname}`);
-
-        const syntaxHighlightShortnames = arr => arr.map(s => `<span class="pl-s"><span class="pl-pds">"</span>${s}<span class="pl-pds">"</span></span>`).join('<span class="pl-pds">, </span>')
-        document.querySelector('span#shortnames').innerHTML = syntaxHighlightShortnames(shortnames);
-
-        document.querySelector('span#variations').innerHTML = JSON
-          .stringify(variations.map(v => ({ ...v, shortnames: syntaxHighlightShortnames(v.shortnames) || [] })), null, 2)
-          .split('\n')
-          .map((line, i) => i === 0 ? line : '  ' + line) // indent all but the first line
-          .map(l => {
-            // highlight json
-            if (l.includes(':')) {
-              // highlight the lines containing key/value pairs
-              return l.split(/:(.*)/s).map((s, i) => `<span class="pl-${i === 0 ? 'ent' : 's'}">${s}</span>`).slice(0, 2).join(':')
-            }
-            // highlight the braces and brackets
-            return `<span class="pl-pds">${l}</span>`;
-          })
-          .join('\n')
-          ;
-      }
-
-      const randomEmoji = () => {
-        if (emojis.length === 0) {
-          return fetchEmojis()
-            .then(randomEmoji) // TODO backoff retries
-            .catch(console.error)
-            ;
-        }
-
-        assignEmoji(emojis[Math.floor(Math.random() * emojis.length)]);
-      };
-
-      fetchEmojis().catch(console.error);
-    </script>
   </head>
   <body>
     <h1><span class="emoji">&#x1F603;</span><span class="arrow"> &harr; </span><code><span class="shortname">:shortname:</span></code></h1>
@@ -260,7 +259,7 @@
   <span class="pl-ent">"shortnames"</span>: [<span id="shortnames"></span>],
   <span class="pl-ent">"variations"</span>: <span id="variations">[]</span>
 }</pre>
-    <label for="randomize" title="Randomize">&#x1F500;</label>
+    <label for="randomize" title="Randomize"><h1>&#x1F500;</h1></label>
     <button id="randomize" onclick="randomEmoji()"></button>
     <a class="gh-link" title="Github" href="https://github.com/tuckerchapin/emoji-codec/">
       <svg class="gh-logo" viewBox="0 0 32.58 31.77">
