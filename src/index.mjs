@@ -32,6 +32,7 @@ const allEmojis = emojis.reduce((acc, emoji) => {
 }, []);
 
 const OUTPUT_DIR = './_site';
+const PUBLIC_DIR = './public';
 // const EMOJI_DIR_NAME = 'emoji';
 // const SHORTNAME_DIR_NAME = 'shortname';
 // const EMOJI_DIR_PATH = path.join(OUTPUT_DIR, EMOJI_DIR_NAME);
@@ -42,6 +43,8 @@ const OUTPUT_DIR = './_site';
 
 // await fs.mkdir(EMOJI_DIR_PATH, { recursive: true });
 // await fs.mkdir(SHORTNAME_DIR_PATH, { recursive: true });
+
+await fs.cp(PUBLIC_DIR, OUTPUT_DIR, { recursive: true });
 
 const fileWrites = allEmojis.reduce((acc, emoji) => {
   // make emoji -> shortname endpoints
@@ -69,5 +72,3 @@ const fileWrites = allEmojis.reduce((acc, emoji) => {
 }, []);
 
 await Promise.all(fileWrites);
-
-await fs.copyFile('README.md', path.join(OUTPUT_DIR, 'index.md'));
