@@ -219,6 +219,7 @@
         align-items: center;
         row-gap: 16px;
         font-size: 16px;
+        overflow: hidden;
       }
 
       h1 {
@@ -228,7 +229,11 @@
         max-width: 100%;
       }
 
-      h1 span.arrow {
+      h1 > span.emoji {
+        line-height: 1;
+      }
+
+      span.arrow {
         user-select: none;
       }
 
@@ -257,6 +262,8 @@
       code {
         padding: 0 0.2em;
         background-color: var(--bgColor-neutral-muted);
+        max-width: 100%;
+        overflow-x: scroll;
       }
 
       pre {
@@ -320,18 +327,8 @@
         fill: var(--bgColor-neutral-muted);
       }
 
-      h1 code {
-        max-width: 100%;
-        overflow-y: hidden;
-      }
-/* (orientation: portrait),  */
-/* need to do something here */
-/* should only go vertical if it's super skinny */
-      /* @media (max-width: 512px) {
-        body {
-          justify-content: flex-start;
-        }
-
+      /* (orientation: portrait) */
+      @media (min-height: 420px) and (max-width: 512px) {
         h1 {
           display: flex;
           flex-direction: column;
@@ -340,13 +337,12 @@
 
         h1 > span.arrow {
           rotate: 90deg;
-          margin-bottom: 6px;
         }
 
-        pre {
+        /* pre {
           height: min-content;
-        }
-      } */
+        } */
+      }
     </style>
   </head>
   <body>
