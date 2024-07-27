@@ -67,19 +67,33 @@ await Promise.all(
   allEmojis.reduce((acc, emoji) => {
     // make emoji -> shortname endpoints
     acc.push(
-      fs.writeFile(path.join(OUTPUT_DIR, emoji.emoji), JSON.stringify(emoji))
-    );
-    acc.push(
-      fs.writeFile(path.join(OUTPUT_DIR, emoji.emoji), JSON.stringify(emoji))
-    );
-
-    // make shortname -> emoji endpoints
-    acc.push(
       fs.writeFile(
-        path.join(OUTPUT_DIR, emoji.shortname),
+        path.join(OUTPUT_DIR, emoji.emoji + ".json"),
         JSON.stringify(emoji)
       )
     );
+    acc.push(
+      fs
+        .mkdir(path.join(OUTPUT_DIR, emoji.emoji), { recursive: true })
+        .then(() =>
+          fs.writeFile(
+            path.join(OUTPUT_DIR, emoji.emoji, "index.json"),
+            JSON.stringify(emoji)
+          )
+        )
+    );
+    acc.push(
+      fs
+        .mkdir(path.join(OUTPUT_DIR, emoji.emoji), { recursive: true })
+        .then(() =>
+          fs.writeFile(
+            path.join(OUTPUT_DIR, emoji.emoji, "index.html"),
+            JSON.stringify(emoji, null, 2)
+          )
+        )
+    );
+
+    // make shortname -> emoji endpoints
     acc.push(
       fs.writeFile(
         path.join(OUTPUT_DIR, emoji.shortname),
