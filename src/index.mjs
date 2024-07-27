@@ -69,7 +69,10 @@ await Promise.all(
     acc.push(
       fs.writeFile(
         path.join(OUTPUT_DIR, emoji.emoji + ".json"),
-        JSON.stringify(emoji)
+        JSON.stringify({
+          ...emoji,
+          path: path.join(OUTPUT_DIR, emoji.emoji + ".json"),
+        })
       )
     );
     acc.push(
@@ -78,7 +81,10 @@ await Promise.all(
         .then(() =>
           fs.writeFile(
             path.join(OUTPUT_DIR, emoji.emoji, "index.json"),
-            JSON.stringify(emoji)
+            JSON.stringify({
+              ...emoji,
+              path: path.join(OUTPUT_DIR, emoji.emoji, "index.json"),
+            })
           )
         )
     );
@@ -88,7 +94,10 @@ await Promise.all(
         .then(() =>
           fs.writeFile(
             path.join(OUTPUT_DIR, emoji.emoji, "index.html"),
-            JSON.stringify(emoji, null, 2)
+            JSON.stringify({
+              ...emoji,
+              path: path.join(OUTPUT_DIR, emoji.emoji, "index.html"),
+            })
           )
         )
     );
