@@ -84,19 +84,19 @@ await Promise.all(
         })
       )
     );
-    acc.push(
-      fs
-        .mkdir(path.join(OUTPUT_DIR, emoji.emoji), { recursive: true })
-        .then(() =>
-          fs.writeFile(
-            path.join(OUTPUT_DIR, emoji.emoji, "index.json"),
-            JSON.stringify({
-              ...emoji,
-              path: path.join(OUTPUT_DIR, emoji.emoji, "index.json"),
-            })
-          )
-        )
-    );
+    // acc.push(
+    //   fs
+    //     .mkdir(path.join(OUTPUT_DIR, emoji.emoji), { recursive: true })
+    //     .then(() =>
+    //       fs.writeFile(
+    //         path.join(OUTPUT_DIR, emoji.emoji, "index.json"),
+    //         JSON.stringify({
+    //           ...emoji,
+    //           path: path.join(OUTPUT_DIR, emoji.emoji, "index.json"),
+    //         })
+    //       )
+    //     )
+    // );
     // acc.push(
     //   fs
     //     .mkdir(path.join(OUTPUT_DIR, emoji.emoji), { recursive: true })
