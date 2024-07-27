@@ -12,7 +12,7 @@
 
       const fetchEmojis = () => fetch(`${baseUrl}/emojis.json`)
         .then(res => res.json())
-        .then(arr => arr.filter(({ shortname }) => !shortname.includes('::') && shortname.length < 24))
+        .then(arr => arr.filter(({ shortname }) => !shortname.includes('::') && shortname.length < 20))
         .then(arr => { emojis = arr; })
         ;
 
