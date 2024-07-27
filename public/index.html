@@ -27,7 +27,7 @@
     <script async>
       const baseUrl = "https://emojishort.name";
       let emojis = [];
-      let emoji = {
+      let currentEmoji = {
         emoji: "😃",
         shortname: ":shortname:",
         shortnames: [],
@@ -42,6 +42,7 @@
           });
 
       const assignEmoji = ({ emoji, shortname, shortnames, variations }) => {
+        currentEmoji = { emoji, shortname, shortnames, variations };
         document.title = `${emoji} ↔ ${shortname}`;
 
         document
@@ -347,7 +348,7 @@
   </head>
   <body>
     <h1>
-      <span class="emoji" onclick="copyToClipboard(emoji.emoji)">&#x1F603;</span><span class="arrow"> &harr; </span><code onclick="copyToClipboard(emoji.shortname)"><span class="shortname">:shortname:</span></code>
+      <span class="emoji" onclick="copyToClipboard(currentEmoji.emoji)">&#x1F603;</span><span class="arrow"> &harr; </span><code onclick="copyToClipboard(currentEmoji.shortname)"><span class="shortname">:shortname:</span></code>
     </h1>
     <pre><span class="pl-c">&gt;</span> <span class="pl-en">GET</span> <a class="emoji pl-s" href="https://emojishort.name/&#x1F603;">https://emojishort.name/<span class="emoji">&#x1F603;</span></a>
 <span class="pl-c">&gt;</span> <span class="pl-en">GET</span> <a class="shortname pl-s" href="https://emojishort.name/:smiley:">https://emojishort.name/<span class="shortname">:smiley:</span></a>
