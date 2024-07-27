@@ -1,53 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>&#x1F603; &harr; :shortname:</title>
-    <link rel="icon" type="image/x-icon" href="https://tuckerchap.in/emoji-codec/favicon.ico">
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://tuckerchap.in/emoji-codec/favicon.ico"
+    />
 
     <script async>
-      const baseUrl = 'https://tuckerchap.in/emoji-codec';
-      let emojis = []
+      const baseUrl = "https://tuckerchap.in/emoji-codec";
+      let emojis = [];
 
-      const fetchEmojis = () => fetch(`${baseUrl}/emojis.json`)
-        .then(res => res.json())
-        .then(arr => { emojis = arr; })
-        ;
-
+      const fetchEmojis = () =>
+        fetch(`${baseUrl}/emojis.json`)
+          .then((res) => res.json())
+          .then((arr) => {
+            emojis = arr;
+          });
       const assignEmoji = ({ emoji, shortname, shortnames, variations }) => {
-        document.querySelectorAll('span.emoji').forEach(n => n.innerText = emoji);
-        document.querySelectorAll('a.emoji').forEach(n => n.href = `${baseUrl}/${emoji}`);
+        document
+          .querySelectorAll("span.emoji")
+          .forEach((n) => (n.innerText = emoji));
+        document
+          .querySelectorAll("a.emoji")
+          .forEach((n) => (n.href = `${baseUrl}/${emoji}`));
 
-        document.querySelectorAll('span.shortname').forEach(n => n.innerText = shortname);
-        document.querySelectorAll('a.shortname').forEach(n => n.href = `${baseUrl}/${shortname}`);
+        document
+          .querySelectorAll("span.shortname")
+          .forEach((n) => (n.innerText = shortname));
+        document
+          .querySelectorAll("a.shortname")
+          .forEach((n) => (n.href = `${baseUrl}/${shortname}`));
 
-        const syntaxHighlightShortnames = arr => arr.map(s => `<span class="pl-s"><span class="pl-pds">"</span>${s}<span class="pl-pds">"</span></span>`).join('<span class="pl-pds">, </span>')
-        document.querySelector('span#shortnames').innerHTML = syntaxHighlightShortnames(shortnames);
+        const syntaxHighlightShortnames = (arr) =>
+          arr
+            .map(
+              (s) =>
+                `<span class="pl-s"><span class="pl-pds">"</span>${s}<span class="pl-pds">"</span></span>`
+            )
+            .join('<span class="pl-pds">, </span>');
+        document.querySelector("span#shortnames").innerHTML =
+          syntaxHighlightShortnames(shortnames);
 
-        document.querySelector('span#variations').innerHTML = JSON
-          .stringify(variations.map(v => ({ ...v, shortnames: syntaxHighlightShortnames(v.shortnames) || [] })), null, 2)
-          .split('\n')
-          .map((line, i) => i === 0 ? line : '  ' + line) // indent all but the first line
-          .map(l => {
+        document.querySelector("span#variations").innerHTML = JSON.stringify(
+          variations.map((v) => ({
+            ...v,
+            shortnames: syntaxHighlightShortnames(v.shortnames) || [],
+          })),
+          null,
+          2
+        )
+          .split("\n")
+          .map((line, i) => (i === 0 ? line : "  " + line)) // indent all but the first line
+          .map((l) => {
             // highlight json
-            if (l.includes(':')) {
+            if (l.includes(":")) {
               // highlight the lines containing key/value pairs
-              return l.split(/:(.*)/s).map((s, i) => `<span class="pl-${i === 0 ? 'ent' : 's'}">${s}</span>`).slice(0, 2).join(':')
+              return l
+                .split(/:(.*)/s)
+                .map(
+                  (s, i) =>
+                    `<span class="pl-${i === 0 ? "ent" : "s"}">${s}</span>`
+                )
+                .slice(0, 2)
+                .join(":");
             }
             // highlight the braces and brackets
             return `<span class="pl-pds">${l}</span>`;
           })
-          .join('\n')
-          ;
-      }
+          .join("\n");
+      };
 
       const randomEmoji = () => {
         if (emojis.length === 0) {
           return fetchEmojis()
             .then(randomEmoji) // TODO backoff retries
-            .catch(console.error)
-            ;
+            .catch(console.error);
         }
 
         assignEmoji(emojis[Math.floor(Math.random() * emojis.length)]);
@@ -59,7 +90,8 @@
     <style>
       :root {
         --base-text-weight-semibold: 600;
-        --fontStack-monospace: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+        --fontStack-monospace: ui-monospace, SFMono-Regular, SF Mono, Menlo,
+          Consolas, Liberation Mono, monospace;
 
         color-scheme: light;
         --fgColor-default: #1f2328;
@@ -145,7 +177,8 @@
       html {
         color: var(--fgColor-default);
         background-color: var(--bgColor-default);
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans",
+          Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
       }
 
       body {
@@ -169,15 +202,25 @@
         max-width: 100%;
       }
 
-      code, pre {
+      code,
+      pre {
         margin: 0;
         color: var(--fgColor-default);
-        font-family: var(--fontStack-monospace, ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace);
+        font-family: var(
+          --fontStack-monospace,
+          ui-monospace,
+          SFMono-Regular,
+          SF Mono,
+          Menlo,
+          Consolas,
+          Liberation Mono,
+          monospace
+        );
         border-radius: 6px;
       }
 
       code {
-        padding: 0 .2em;
+        padding: 0 0.2em;
         background-color: var(--bgColor-neutral-muted);
       }
 
@@ -269,7 +312,10 @@
     </style>
   </head>
   <body>
-    <h1><span class="emoji">&#x1F603;</span><span class="arrow"> &harr; </span><code><span class="shortname">:shortname:</span></code></h1>
+    <h1>
+      <span class="emoji">&#x1F603;</span><span class="arrow"> &harr; </span
+      ><code><span class="shortname">:shortname:</span></code>
+    </h1>
     <pre><span class="pl-c">&gt;</span> <span class="pl-en">GET</span> <a class="emoji pl-s" href="https://tuckerchap.in/emoji-codec/&#x1F603;">https://tuckerchap.in/emoji-codec/<span class="emoji">&#x1F603;</span></a>
 <span class="pl-c">&gt;</span> <span class="pl-en">GET</span> <a class="shortname pl-s" href="https://tuckerchap.in/emoji-codec/:smiley:">https://tuckerchap.in/emoji-codec/<span class="shortname">:smiley:</span></a>
 {
@@ -278,9 +324,15 @@
   <span class="pl-ent">"shortnames"</span>: [<span id="shortnames"></span>],
   <span class="pl-ent">"variations"</span>: <span id="variations">[]</span>
 }</pre>
-    <a class="gh-link" title="Github" href="https://github.com/tuckerchapin/emoji-codec/">
+    <a
+      class="gh-link"
+      title="Github"
+      href="https://github.com/tuckerchapin/emoji-codec/"
+    >
       <svg class="gh-logo" viewBox="0 0 32.58 31.77">
-        <path d="M16.29,0a16.29,16.29,0,0,0-5.15,31.75c.82.15,1.11-.36,1.11-.79s0-1.41,0-2.77C7.7,29.18,6.74,26,6.74,26a4.36,4.36,0,0,0-1.81-2.39c-1.47-1,.12-1,.12-1a3.43,3.43,0,0,1,2.49,1.68,3.48,3.48,0,0,0,4.74,1.36,3.46,3.46,0,0,1,1-2.18c-3.62-.41-7.42-1.81-7.42-8a6.3,6.3,0,0,1,1.67-4.37,5.94,5.94,0,0,1,.16-4.31s1.37-.44,4.48,1.67a15.41,15.41,0,0,1,8.16,0c3.11-2.11,4.47-1.67,4.47-1.67A5.91,5.91,0,0,1,25,11.07a6.3,6.3,0,0,1,1.67,4.37c0,6.26-3.81,7.63-7.44,8a3.85,3.85,0,0,1,1.11,3c0,2.18,0,3.94,0,4.47s.29.94,1.12.78A16.29,16.29,0,0,0,16.29,0Z"/>
+        <path
+          d="M16.29,0a16.29,16.29,0,0,0-5.15,31.75c.82.15,1.11-.36,1.11-.79s0-1.41,0-2.77C7.7,29.18,6.74,26,6.74,26a4.36,4.36,0,0,0-1.81-2.39c-1.47-1,.12-1,.12-1a3.43,3.43,0,0,1,2.49,1.68,3.48,3.48,0,0,0,4.74,1.36,3.46,3.46,0,0,1,1-2.18c-3.62-.41-7.42-1.81-7.42-8a6.3,6.3,0,0,1,1.67-4.37,5.94,5.94,0,0,1,.16-4.31s1.37-.44,4.48,1.67a15.41,15.41,0,0,1,8.16,0c3.11-2.11,4.47-1.67,4.47-1.67A5.91,5.91,0,0,1,25,11.07a6.3,6.3,0,0,1,1.67,4.37c0,6.26-3.81,7.63-7.44,8a3.85,3.85,0,0,1,1.11,3c0,2.18,0,3.94,0,4.47s.29.94,1.12.78A16.29,16.29,0,0,0,16.29,0Z"
+        />
       </svg>
     </a>
     <label for="randomize" title="Randomize"><h1>&#x1F500;</h1></label>
