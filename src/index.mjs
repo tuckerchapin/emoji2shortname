@@ -68,10 +68,10 @@ await Promise.all(
     // make emoji -> shortname endpoints
     acc.push(
       fs.writeFile(
-        path.join(OUTPUT_DIR, emoji.emoji + ".json"),
+        path.join(OUTPUT_DIR, emoji.emoji),
         JSON.stringify({
           ...emoji,
-          path: path.join(OUTPUT_DIR, emoji.emoji + ".json"),
+          path: path.join(OUTPUT_DIR, emoji.emoji),
         })
       )
     );

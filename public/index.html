@@ -21,6 +21,8 @@
             emojis = arr;
           });
       const assignEmoji = ({ emoji, shortname, shortnames, variations }) => {
+        document.title = `${emoji} ↔ ${shortname}`;
+
         document
           .querySelectorAll("span.emoji")
           .forEach((n) => (n.innerText = emoji));
