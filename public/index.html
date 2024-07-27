@@ -26,6 +26,12 @@
     <script async>
       const baseUrl = "https://emojishort.name";
       let emojis = [];
+      let emoji = {
+        emoji: "😃",
+        shortname: ":shortname:",
+        shortnames: [],
+        variations: [],
+      };
 
       const fetchEmojis = () =>
         fetch(`${baseUrl}/emojis.json`)
@@ -33,6 +39,7 @@
           .then((arr) => {
             emojis = arr;
           });
+
       const assignEmoji = ({ emoji, shortname, shortnames, variations }) => {
         document.title = `${emoji} ↔ ${shortname}`;
 
@@ -98,6 +105,8 @@
 
         assignEmoji(emojis[Math.floor(Math.random() * emojis.length)]);
       };
+
+      const copyToClipboard = (text) => navigator.clipboard.writeText(text).then(() => console.log(`Copied "${text}" to clipboard`)).catch(console.error);
 
       fetchEmojis().catch(console.error);
     </script>
@@ -217,6 +226,10 @@
         max-width: 100%;
       }
 
+      h1 span.arrow {
+        user-select: none;
+      }
+
       code,
       pre {
         margin: 0;
@@ -328,8 +341,7 @@
   </head>
   <body>
     <h1>
-      <span class="emoji">&#x1F603;</span><span class="arrow"> &harr; </span
-      ><code><span class="shortname">:shortname:</span></code>
+      <span class="emoji" onclick="copyToClipboard(emoji.emoji)">&#x1F603;</span><span class="arrow"> &harr; </span><code onclick="copyToClipboard(emoji.shortname)"><span class="shortname">:shortname:</span></code>
     </h1>
     <pre><span class="pl-c">&gt;</span> <span class="pl-en">GET</span> <a class="emoji pl-s" href="https://emojishort.name/&#x1F603;">https://emojishort.name/<span class="emoji">&#x1F603;</span></a>
 <span class="pl-c">&gt;</span> <span class="pl-en">GET</span> <a class="shortname pl-s" href="https://emojishort.name/:smiley:">https://emojishort.name/<span class="shortname">:smiley:</span></a>
