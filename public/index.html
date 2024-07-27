@@ -210,7 +210,7 @@
         background-color: var(--bgColor-default);
         margin: 0;
         padding: 16px;
-        padding-bottom: calc(16px * 2 + 48px);
+        padding-bottom: calc(16px * 2 + 32px);
         height: 100dvh;
         width: 100vw;
         display: flex;
@@ -300,6 +300,13 @@
         cursor: pointer;
         user-select: none;
         -webkit-user-select: none;
+        position: absolute;
+        right: 16px;
+        bottom: 16px;
+      }
+
+      label h1 {
+        line-height: 1;
       }
 
       .gh-link {
@@ -309,7 +316,7 @@
       }
 
       .gh-logo {
-        height: 48px;
+        height: 32px;
         fill: var(--bgColor-neutral-muted);
       }
 
@@ -336,12 +343,6 @@
 
         pre {
           height: min-content;
-        }
-
-        label[for="randomize"] {
-          position: absolute;
-          right: 16px;
-          bottom: 16px;
         }
       }
     </style>
