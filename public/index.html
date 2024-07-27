@@ -86,7 +86,7 @@
                 .split(/:(.*)/s)
                 .map(
                   (s, i) =>
-                    `<span class="pl-${i === 0 ? "ent" : "s"}">${s}</span>`
+                    `<span class="pl-${i === 0 ? "ent" : "s"}">${s.replace(/,+$/, "")}</span>${s.includes(",") ? ',' : ''}`
                 )
                 .slice(0, 2)
                 .join(":");
