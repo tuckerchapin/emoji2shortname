@@ -65,24 +65,63 @@ await fs.writeFile(
 
 await Promise.all(
   allEmojis.reduce((acc, emoji) => {
+    const fileName = `index.json`;
+    const fileContents = JSON.stringify(emoji);
+
     // make emoji -> shortname endpoints
+    // /😃/index.json
+    const emojiPath = path.join(OUTPUT_DIR, emoji.emoji);
     acc.push(
-      fs.writeFile(path.join(OUTPUT_DIR, emoji.emoji), JSON.stringify(emoji))
+      fs
+        .mkdir(emojiPath)
+        .then(() => fs.writeFile(path.join(emojiPath, fileName), fileContents))
     );
 
     // make shortname -> emoji endpoints
+    // /:shortname:/index.json
+    // /shortname/index.json
+    const shortnamePath = path.join(OUTPUT_DIR, emoji.shortname);
+    const rawShortnamePath = path.join(
+      OUTPUT_DIR,
+      emoji.shortname.replace(/:/g, "")
+    );
     acc.push(
-      fs.writeFile(
-        path.join(OUTPUT_DIR, emoji.shortname),
-        JSON.stringify(emoji)
-      )
+      fs
+        .mkdir(shortnamePath)
+        .then(() =>
+          fs.writeFile(path.join(shortnamePath, fileName), fileContents)
+        ),
+      fs
+        .mkdir(rawShortnamePath)
+        .then(() =>
+          fs.writeFile(path.join(rawShortnamePath, fileName), fileContents)
+        )
     );
 
-    // make alternative shortnames -> emoji endpoints as well
+    // make alternative shortnames -> emoji endpoints
+    // /:alt-shortname:/index.json
+    // /alt-shortname/index.json
     acc.push(
-      ...emoji.shortnames.map((shortname) =>
-        fs.writeFile(path.join(OUTPUT_DIR, shortname), JSON.stringify(emoji))
-      )
+      ...emoji.shortnames.reduce((a, shortname) => {
+        const altnamePath = path.join(OUTPUT_DIR, shortname);
+        const rawAltnamePath = path.join(
+          OUTPUT_DIR,
+          shortname.replace(/:/g, "")
+        );
+        return [
+          ...a,
+          fs
+            .mkdir(altnamePath)
+            .then(() =>
+              fs.writeFile(path.join(altnamePath, fileName), fileContents)
+            ),
+          fs
+            .mkdir(rawAltnamePath)
+            .then(() =>
+              fs.writeFile(path.join(rawAltnamePath, fileName), fileContents)
+            ),
+        ];
+      }, [])
     );
 
     return acc;

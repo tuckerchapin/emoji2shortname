@@ -108,7 +108,11 @@
         assignEmoji(emojis[Math.floor(Math.random() * emojis.length)]);
       };
 
-      const copyToClipboard = (text) => navigator.clipboard.writeText(text).then(() => console.log(`Copied "${text}" to clipboard`)).catch(console.error);
+      const copyToClipboard = (text) =>
+        navigator.clipboard
+          .writeText(text)
+          .then(() => console.log(`Copied "${text}" to clipboard`))
+          .catch(console.error);
 
       fetchEmojis().catch(console.error);
     </script>
@@ -274,7 +278,7 @@
         background-color: var(--bgColor-muted);
         font-size: 85%;
         line-height: 1.45;
-        height: calc(8lh + 32px);
+        height: calc(9lh + 32px);
         width: 100%;
         max-width: 480px;
         overflow: scroll;
@@ -352,6 +356,7 @@
     </h1>
     <pre><span class="pl-c">&gt;</span> <span class="pl-en">GET</span> <a class="emoji pl-s" href="https://emojishort.name/&#x1F603;">https://emojishort.name/<span class="emoji">&#x1F603;</span></a>
 <span class="pl-c">&gt;</span> <span class="pl-en">GET</span> <a class="shortname pl-s" href="https://emojishort.name/:smiley:">https://emojishort.name/<span class="shortname">:smiley:</span></a>
+<span class="pl-c">&gt;</span> <span class="pl-en">GET</span> <a class="shortname pl-s" href="https://emojishort.name/smiley">https://emojishort.name/<span class="shortname">smiley</span></a>
 {
   <span class="pl-ent">"emoji"</span>: <span class="pl-s"><span class="pl-pds">"</span><span class="emoji">&#x1F603;</span><span class="pl-pds">"</span></span>,
   <span class="pl-ent">"shortname"</span>: <span class="pl-s"><span class="pl-pds">"</span><span class="shortname">:smiley:</span><span class="pl-pds">"</span></span>,
