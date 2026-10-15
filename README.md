@@ -9,3 +9,15 @@
   "variations": []
 }
 </code></pre>
+
+## Meta Preview
+
+<!-- meta-preview https://emojishort.name/ -->
+> <a href="https://emojishort.name"><img src="https://emojishort.name/favicon.ico" width="16" height="16" alt=""></a> 😃 ↔ :shortname:
+>
+> **[😃 ↔ :shortname:](https://emojishort.name)**
+>
+> Translate emoji to and from a Slack/Discord-friendly CLDR representation
+>
+> <a href="https://emojishort.name"><img src="https://emojishort.name/preview-name-light.png" width="400" alt="😃 ↔ :shortname:"></a>
+<!-- /meta-preview -->
